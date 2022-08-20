@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-class MetricSerializer
-  include FastJsonapi::ObjectSerializer
+class MetricSerializer < ApplicationSerializer
   attributes :name, :timestamp, :value, :key
 end
