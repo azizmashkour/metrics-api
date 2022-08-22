@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe V1::MetricsController do
+RSpec.describe Api::V1::MetricsController do
   describe '#index' do
     subject { get :index }
 
