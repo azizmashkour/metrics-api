@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :metric do
-    name { 'Twitter DM sent' }
+    name { Faker::Lorem.sentence }
     key { 'twitter_dm:sent' }
     value { 156 }
     timestamp { Time.now }

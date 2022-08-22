@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Metric < ApplicationRecord
+  validates :name, :value, :timestamp, presence: true
 
   KEY_REGEX = /\A[a-zA-Z0-9:_]+\z/.freeze
 
