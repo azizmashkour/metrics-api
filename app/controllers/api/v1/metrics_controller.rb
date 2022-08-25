@@ -13,7 +13,7 @@ module Api
 
       def create
         build_metrics(
-          Metrics::CreateService.perform(metric_params)
+          CreateService.perform(metric_params)
         )
       end
 

@@ -9,7 +9,8 @@ RSpec.describe MetricSerializer, type: :serializer do
 
   describe "includes the expected attributes" do
     it do
-      expect(subject_json(subject)["data"]["attributes"].keys).
+      subject_json(subject)
+      expect(subject_json(subject).attributes.keys).
         to contain_exactly(
           :name,
           :key,
@@ -29,21 +30,16 @@ RSpec.describe MetricSerializer, type: :serializer do
       expect(serializable_hash[:data].length).to eq 1
       expect(serializable_hash[:data][0][:attributes].length).to eq 4
 
-      expect(serializable_hash[:data][0][:attributes][:name]).to be_instance_of(String)
+      expect(serializable_hash[:data][0][:attributes][:name]).to be_instance_of(Hash)
     end
   end
 
-  def subject_json(subject)
-    JSON.parse(subject.to_json)
-  end
-
   def metric_resource
-    @metric_resource ||= build(:metric_resource)
+    FactoryBot.build(:metric)
   end
 
   # Create an instance of the serializer
   def metric_serializer
-    @metric_serializer ||=
-      MetricSerializer.new(metric_resource)
+    MetricSerializer.new(metric_resource)
   end
 end
