@@ -1,18 +1,24 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
+import Home from './layout/Home'
 
-const App = props => (
-  <div>
-    <h1>{props.title}!</h1>
-  </div>
-)
+const App = props => {
+  return (
+    <Fragment>
+      <div className="text-right my-10">
+        <h1 className="text-4xl font-bold uppercase">{props.title}</h1>
+      </div>
+      <Home />
+    </Fragment>
+  )
+}
 
 App.defaultProps = {
-  title: 'Metrics'
+  name: 'David'
 }
 
 App.propTypes = {
-  title: PropTypes.string
+  name: PropTypes.string
 }
 
 export default App
