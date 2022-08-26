@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 class Metric < ApplicationRecord
+  validates :name, :value, :timestamp, presence: true
+  
+  before_create do
+    self.key = self.name.split(" ").join("-").downcase if self.name.present?
+  end
 
   KEY_REGEX = /\A[a-zA-Z0-9:_]+\z/.freeze
 
@@ -12,12 +17,6 @@ class Metric < ApplicationRecord
   GITHUB_PR_MERGED_KEY = 'pull_requests:merged'
   GITHUB_PR_OPENED_KEY = 'pull_requests:opened'
   GITHUB_PR_DEPLOYED_KEY = 'pull_requests:deployed'
-
-  validates :key,
-            format: {
-              with: KEY_REGEX,
-              message: 'may only contain alphanumeric, underscore(_), and colon(:) characters'
-            }
 
   # contain hashes with default attributes for the `official` metrics
   DEFAULT_ATTRIBUTES = {
