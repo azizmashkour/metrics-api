@@ -25,7 +25,6 @@ RSpec.describe MetricSerializer, type: :serializer do
       serializable_hash = ActiveModelSerializers::Adapter.create(metric_serializer).serializer.serializable_hash
       
       expect(serializable_hash[:data]).to be_instance_of(Hash)
-      p serializable_hash[:data].length
       expect(serializable_hash[:data].length).to eq 3
       expect(serializable_hash[:data][:attributes].length).to eq 4
 
