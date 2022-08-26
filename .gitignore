@@ -13,8 +13,8 @@
 !/log/.keep
 !/tmp/.keep
 
-/tmp/*
 /public
+/tmp/cache
 /node_modules
 /yarn-error.log
 yarn-debug.log*
