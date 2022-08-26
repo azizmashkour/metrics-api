@@ -14,7 +14,7 @@ const App = props => {
 }
 
 App.defaultProps = {
-  name: 'David'
+  name: 'Meta metrics'
 }
 
 App.propTypes = {

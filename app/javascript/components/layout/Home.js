@@ -5,6 +5,7 @@ import { Chart } from 'chart.js'
 
 import {
   API_URL,
+  FAILED,
   ERROR_MSG,
   LOADER_MESG,
   NOT_FOUND_MSG,
@@ -12,10 +13,12 @@ import {
   CHART_METRIC_OPTIONS
 } from '../../constants'
 import Button from '../button/Button'
+import FlashMessage from '../notify/FlashMessage'
+
 
 const Home = () => {
   const [message, setMessage] = useState(null);
-  const [errorMessage, setErrorMessage] = useState(null)
+  const [statusFailed, setStatusFailed] = useState(null)
 
   // query and mutation for metrics to get and add metrics
   const { data, isLoading } = useQuery(['metrics'], async () => {
@@ -27,7 +30,8 @@ const Home = () => {
     );
   });
 
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient()
+  
   const mutation = useMutation(
     async (data) => {
       return jsonFetch(API_URL, {
@@ -40,12 +44,14 @@ const Home = () => {
     },
     {
       onSuccess() {
-        queryClient.invalidateQueries(['metrics']);
-        setMessage(SUCCESS_MSG);
+        queryClient.invalidateQueries(['metrics'])
+        setMessage(SUCCESS_MSG)
+        setStatusFailed(FAILED)
       },
       onError: (err) => {
         console.error('err', err)
-        setErrorMessage(ERROR_MSG);
+        setMessage(ERROR_MSG)
+        setStatusFailed(!FAILED)
       }
     }
   );
@@ -116,30 +122,7 @@ const Home = () => {
                 ev.preventDefault();
                 handleAddMetric()
               }}>
-              <Fragment>
-                {message && (
-                  <div className="flex items-center bg-green-100 px-4 border border-green-300 rounded">
-                    <span className='grow font-semibold text-green-600'>🎉 {message}</span>
-                    <button
-                      className="p-2 text-lg text-gray-900 rounded-md"
-                      onClick={() => setMessage(null)}>
-                      &times;
-                    </button>
-                  </div>
-                )}
-              </Fragment>
-              <Fragment>
-                {errorMessage && (
-                  <div className="flex items-center bg-red-100 px-4 border border-red-300 rounded">
-                    <span className='grow font-semibold text-red-600'>😢 {errorMessage}</span>
-                    <button
-                      className="p-2 text-lg text-gray-900 rounded-md"
-                      onClick={() => setMessage(null)}>
-                      &times;
-                    </button>
-                  </div>
-                )}
-              </Fragment>
+              {message && <FlashMessage message={message} statusFailed={statusFailed} setMessage={setMessage} />}
               <h3 className='text-2xl text-center mb-4'>Add a metric</h3>
               <input
                 type="text"

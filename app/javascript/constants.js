@@ -4,6 +4,7 @@ export const NOT_FOUND_MSG='Sorry no metrics found.'
 export const SUCCESS_MSG='Metric successfully added'
 export const ERROR_MSG='Something went wrong.'
 export const LOADER_MESG='Loading metrics...'
+export const FAILED=false
 export const CHART_METRIC_OPTIONS={
   scales: {
     x: {
