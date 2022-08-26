@@ -1,5 +1,6 @@
 {
   "name": "metrics-api",
+  "author": "Mashkour Abdel Aziz",
   "private": true,
   "dependencies": {
     "@babel/preset-react": "^7.18.6",
