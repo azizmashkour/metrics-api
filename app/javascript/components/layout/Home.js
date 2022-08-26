@@ -17,7 +17,18 @@ import FlashMessage from '../notify/FlashMessage'
 
 
 const Home = () => {
-  const [message, setMessage] = useState(null);
+  // Refs For ChartJS
+  const chartRef = useRef(null)
+  const canvasRef = useRef(null)
+
+  // Form handling states
+  const [key, setKey] = useState('')
+  const [name, setName] = useState('')
+  const [value, setValue] = useState(0)
+  const [date, setDate] = useState(new Date())
+  
+  // Notification messages states
+  const [message, setMessage] = useState(null)
   const [statusFailed, setStatusFailed] = useState(null)
 
   // query and mutation for metrics to get and add metrics
@@ -48,17 +59,13 @@ const Home = () => {
         setMessage(SUCCESS_MSG)
         setStatusFailed(FAILED)
       },
-      onError: (err) => {
+      onError: (err) => { // catch error and send flash message
         console.error('err', err)
         setMessage(ERROR_MSG)
         setStatusFailed(!FAILED)
       }
     }
   );
-
-  // Refs For ChartJS
-  const chartRef = useRef(null)
-  const canvasRef = useRef(null)
 
   const buildChart = (ctx, data) => {
     const { labels, datasets } = transformToChartJSFormat(data)
@@ -83,15 +90,11 @@ const Home = () => {
       chartRef.current?.destroy()
     }
   }, [data])
-
-  // Form handling states
-  const [key, setKey] = useState('')
-  const [name, setName] = useState('')
-  const [value, setValue] = useState(0)
-  const [date, setDate] = useState(new Date())
-
+  /**
+   * function triggered when the submit button is clicked.
+   */
   const handleAddMetric = () => {
-    console.log('submitting')
+    console.log('submitting!!!')
     if (date) {
       mutation.mutate({
         name,
@@ -128,7 +131,7 @@ const Home = () => {
                 type="text"
                 value={key}
                 onChange={(ev) => setKey(ev.target.value)}
-                placeholder="key"
+                placeholder="key(optional)"
                 className="p-2 rounded-md border"
               />
               <input
