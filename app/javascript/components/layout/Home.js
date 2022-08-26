@@ -142,6 +142,7 @@ const Home = () => {
               <input
                 required
                 type="number"
+                min={1}
                 value={value}
                 onChange={(ev) => setValue(ev.target.valueAsNumber)}
                 placeholder="value"
