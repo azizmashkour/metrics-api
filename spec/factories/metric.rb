@@ -5,6 +5,6 @@ FactoryBot.define do
     name { Faker::Lorem.sentence }
     key { 'twitter_dm:sent' }
     value { 156 }
-    timestamp { Time.now }
+    timestamp { Time.zone.now }
   end
 end

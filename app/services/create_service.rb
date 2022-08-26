@@ -8,10 +8,8 @@ class CreateService < ApplicationService
   def self.perform(metric_params)
     metric = Metric.new(metric_params)
 
-    return nil unless metric.save!
+    throw ActiveRecord::RecordInvalid unless metric.save!
 
     metric
-  rescue StandardError => e
-    Rails.logger.error(e)
   end
 end
