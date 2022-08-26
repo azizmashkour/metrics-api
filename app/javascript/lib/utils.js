@@ -16,9 +16,14 @@ export  const jsonFetch = async (url, options) => {
     headers,
     credentials: 'include'
   })
-    .then((response) => response.json())
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error(response.statusText);
+    })
     .catch((error) => {
-      console.error('There was an error ?', error);
+      throw new Error(error);
     });
 }
 
