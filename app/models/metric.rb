@@ -2,10 +2,8 @@
 
 class Metric < ApplicationRecord
   validates :name, :value, :timestamp, presence: true
-  
-  before_create do
-    self.key = self.name.split(" ").join("-").downcase if self.name.present?
-  end
+
+  before_create :add_or_generate_key
 
   KEY_REGEX = /\A[a-zA-Z0-9:_]+\z/.freeze
 
@@ -78,6 +76,11 @@ class Metric < ApplicationRecord
       metrics.count
     end
   end
+
+  private
+    def add_or_generate_key
+      self.key ||= self.name.split(" ").join("-").downcase if self.name.present?
+    end
 end
 
 # == Schema Information
