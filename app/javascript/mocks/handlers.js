@@ -1,6 +1,7 @@
 import { rest } from 'msw'
 import { fakeMetrics } from '../services/db'
 
+// Only used for the `dev` environment tests when there is not `db` connected.
 export const handlers = [
     rest.get(`/api/v1/metrics.json`, (req, res, ctx) => {
         return res(ctx.status(200), ctx.json(fakeMetrics));
