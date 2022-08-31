@@ -10,5 +10,6 @@ Rails.application.routes.draw do
     end
   end
 
+  # Forward all requests to PagesController#index
   get '*path', to: 'pages#index', via: :all
 end

@@ -21,14 +21,14 @@ This README documents the steps necessary to get the metrics-api Ruby on Rails a
 
 # Installation
 
-This describes all what you need to make the app running successfully.
+This describes all that you need to make the app run successfully.
 
 ## Bundle dependencies
 
 This includes all infrastructure dependencies ([besides nvm](#install-node)).
 To install these required items,
-first make sure you have [homebrew installed and setup](https://brew.sh/).
-Afterwards, run the following command in the root of the repository:
+first, make sure you have [homebrew installed and set up](https://brew.sh/).
+Afterward, run the following command in the root of the repository:
 
 ```
 brew bundle
@@ -49,7 +49,7 @@ Install [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) and Node 16
 
 Install yarn
 
-via npm `npm install --global yarn` (in your node's version)
+via `npm install --global yarn` (in your node's version)
 
 or
 
@@ -57,7 +57,7 @@ via homebrew `brew install yarn`
 
 ## Setting up dependencies
 
-Put postgresql on the path (zsh example):
+Put PostgreSQL on the path (zsh example):
 
 ```
 echo 'export PATH="/opt/homebrew/opt/postgresql@12/bin:$PATH"' >> ~/.zshrc
@@ -145,8 +145,13 @@ or
 bundle exec rails spec
 ```
 
-To setup the test databases needed to run:
+To set up the test databases needed to run:
 
 ```
 RAILS_ENV=test bundle exec rake db:setup
 ```
+
+## Other resources
+[React Query](https://react-query-v3.tanstack.com/overview)
+[ChartJS](https://www.chartjs.org/docs/latest/)
+[TailwindCSS](https://tailwindcss.com/docs/guides/ruby-on-rails)
