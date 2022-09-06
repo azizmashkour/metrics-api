@@ -95,7 +95,7 @@ bundle exec rake db:seed
 
 This will create a list of fake metrics to be populated and used in the Chart.js graph. Once this command is executed, the next time you may try to run it again, it automatically update the existing data instead of deleting them.
 
-## Install gems and yarn packages:
+## Install gems and yarn packages
 
 Since we are using some yarn packages and `ruby` gems, we need to install all of them by running the commands:
 
