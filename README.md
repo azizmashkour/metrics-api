@@ -12,7 +12,7 @@ This README documents the steps necessary to get the metrics-api Ruby on Rails a
   - [Setting up dependencies](#setting-up-dependencies)
   - [Clone repository](#clone-repository)
   - [Set up the database](#set-up-the-database)
-  - [Install gems and yarn packages:](#install-gems-and-yarn-packages)
+  - [Install gems and yarn packages](#install-gems-and-yarn-packages)
   - [Run the app](#run-the-app)
     - [Other commands to run](#other-commands-to-run)
   - [Run the tests](#run-the-tests)
